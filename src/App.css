@@ -1,0 +1,452 @@
+html, body{
+  height: 100%;
+  background-color: rgb(231, 231, 231);
+  font-family: "Helvetica";
+}
+.grey{
+  color: grey;
+}
+
+.navbar-default .navbar-nav li a{
+  color:black;
+  cursor: pointer;
+}
+.navbar-right li {
+  margin-top: 15px;
+  margin-right: 30px;
+}
+
+.glyphicon-cog{
+  font-size: 20px;
+  cursor: pointer;
+}
+.glyphicon-triangle-bottom{
+  font-size: 10px;
+}
+.manageUser{
+  padding: 13px 5px 10px 5px;
+}
+.manageUser:hover{
+  text-decoration: none;
+  font-weight: bold;
+}
+.manageUsername{
+
+  padding: 14px 5px 10px 5px;
+}
+#addButton{
+  position: fixed;
+    bottom: 0px;
+    right: 0px; 
+    border-radius: 50%;
+    background-color: rgb(37, 132, 196);
+    padding: 20px 22px 19px 22px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    filter: drop-shadow(5px 10px 10px  rgb(148, 147, 147));
+    
+}
+.glyphicon.glyphicon-plus {
+  color: white;
+}
+#test{
+  height: 3000px;
+  width: 40px;
+  background-color: aquamarine;
+  margin: auto;
+}
+#newPR{
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147)); 
+  margin-bottom: 30px;
+}
+
+.sortDiv{
+  background-color:  rgb(37, 132, 196);
+  color: white;
+  text-align: center;
+  border-radius: 50%/50%;
+  margin-top: 9px;
+  padding: 1px 1px 1px 1px;
+  width: 40px;
+}
+.sortDiv strong p{
+  margin-top: 9px;
+}
+.prContainer{
+  margin-top: 100px;
+}
+.delete{
+  padding: 17px;
+  padding-top: 26px;
+  text-align: center;
+  color: red;
+  cursor: pointer;
+  margin-left: 38%;
+  cursor: pointer;
+}
+.delete:hover{
+  padding: 17px;
+  padding-top: 27px;
+  text-align: center;
+  color: white;
+  background-color: rgb(255, 0, 0);
+  cursor: pointer;
+  margin-left: 38%;
+  cursor: pointer;
+
+}
+.edit{
+
+  padding: 17px;
+  padding-top: 27px;
+  text-align: center;
+  color: rgb(32, 127, 211);
+  margin-left: 96%;
+  cursor: pointer;
+
+}
+.edit:hover{
+  padding: 17px;
+  padding-top: 27px;
+  text-align: center;
+  color: white;
+  background-color:  rgb(32, 127, 211);
+  cursor: pointer;
+  margin-left: 96%;
+  cursor: pointer;
+}
+
+.ok{
+  padding: 17px;
+  padding-top: 27px;
+  text-align: center;
+  color: rgb(18, 131, 27);
+  margin-left: 96%;
+  cursor: pointer;
+
+  cursor: pointer;
+}
+.ok:hover{
+  padding: 17px;
+  padding-top: 27px;
+  text-align: center;
+  color: white;
+  background-color: green;
+  cursor: pointer;
+  margin-left: 96%;
+  cursor: pointer;
+}
+.loginButton:hover{
+  margin-top: 10px;
+  text-decoration-line: none;
+}
+.nameHide{
+  display: none;
+}
+.time{
+  color: rgb(150, 150, 148);
+}
+.navbar{
+  height: 75px;
+}
+.logo{
+  max-width: 220px;
+  max-height: 220px;
+}
+.glyphicon-edit{
+  font-size: 20px;
+}
+.glyphicon-ok{
+  font-size: 20px;
+  cursor: pointer;
+}
+.glyphicon-remove{
+  font-size: 20px;
+}
+.editOrOK{
+  margin-top: 20px;
+}
+
+/* ------------------------------------------manage users CSS------------------------------------------- */
+.manage{
+  text-align: center;
+  margin-top: 140px;
+}
+.btn-danger{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.loginName{
+  margin-top: 30px;
+}
+/* ---------------------deleteUser------------------ */
+.label{
+  background-color: white;
+  color: black;
+  padding: 7px;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.username{
+  font-size: 17px;
+  margin-right: 10px;
+}
+.removeuser{
+  font-size: 15px;
+  cursor: pointer;
+}
+.removeuser:hover{
+  font-size: 15px;
+  cursor: pointer;
+  color: red;
+}
+.currentUsers{
+  margin-left: 40%;
+  color: rgb(73, 73, 73);
+}
+.inline-block{
+  display: inline-block;
+}
+.verticalHr{
+  width: 1px;
+  height: 400px;
+  background-color: rgb(214, 213, 213);
+  margin-left: 50%;
+}
+.enterUser{
+  margin-left: 15%;
+}
+.addUserButton{
+  margin-left: 43%;
+}
+hr{
+  border: 0.5px solid rgb(214, 213, 213);
+}
+.searchButton{
+  margin-left: 10px;
+}
+.searchBox{
+  display: inline;
+}
+.noMatch{
+  color: red;
+}
+.glyphicon-filter{
+  margin-left: 100px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.glyphicon-filter:hover{
+  margin-left: 100px;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(255, 94, 0);
+}
+/* warning */
+
+.warning{
+  margin-left: 41%;
+  background-color: white;
+  padding: 2px 15px 2px 15px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 8px;
+  display: inline-block;
+  position: fixed;
+  bottom: 30px;
+}
+
+.glyphicon-warning{
+  color: red;
+}
+.fa-github{
+  font-size: 25px;
+  display: inline-block;
+  color: rgb(121, 121, 121);
+}
+.githubLink{
+  color: rgb(121, 121, 121);;
+}
+.githubLink:hover{
+  text-decoration: none;
+}
+
+
+/* -------------------------------------------currentUser------------------------------------ */
+.currentUserContainer{
+  margin-top: 110px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 5px;
+}
+.currentUser{
+  background-color: white;
+  padding: 10px;
+  border-top: 1px solid rgb(195, 195, 195);
+  max-width: 100%;
+}
+.currentUserPP{
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
+.accessSwitches{
+  margin-top: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(223, 73, 73);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(7, 117, 3);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* --------------------------------------pending------------------------------------------ */
+.pending{
+ border-radius: 5px;
+  max-width: 340px;
+  display: inline-block;
+  height: 300px;
+  margin: 20px;
+  background-color: white;
+}
+.pendingPP{
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+  margin-left: 33%; 
+}
+.pendingName{
+  text-align: center;
+  margin: auto;
+  margin-top: 15px;
+}
+.pendingNameCol{
+  background-color: #f6f7f9 ;
+  height: 50px;
+  color: rgb(88, 88, 88);
+}
+.pendingImage{
+  padding: 20px 0px 0px 5px;
+}
+.pendingEmail{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.pendingAccept{
+  background-color: rgb(0, 136, 68);
+}
+.pendingDeclineCol{
+  display: inline-block;
+  /* background-color: red; */
+  border: 1px solid  rgb(223, 73, 73);
+  width: 90px;
+  padding: 4px 0 0 0;
+  border-radius: 5px;
+  height: 30px;
+  margin-left: 45px;
+  cursor: pointer;
+  text-align: center;
+  color: rgb(223, 73, 73);
+}
+.pendingDeclineCol:hover{
+  display: inline-block;
+  background-color: rgb(255, 233, 238);
+  width: 90px;
+  border-radius: 5px;
+  height: 30px;
+  margin-left: 45px;
+  cursor: pointer;
+  text-align: center;
+  color:rgb(223, 73, 73);
+  text-decoration-line: none;
+}
+.pendingAcceptCol{
+  display: inline-block;
+  /* background-color: red; */
+  border: 1px solid rgb(7, 117, 3);
+  width: 90px;
+  padding: 4px 0 0 0;
+  border-radius: 5px;
+  height: 30px;
+  margin-left: 70px;
+  cursor: pointer;
+  text-align: center;
+  color:rgb(7, 117, 3);
+}
+.pendingAcceptCol:hover{
+  display: inline-block;
+  background-color: rgb(236, 253, 240);
+  width: 90px;
+  border-radius: 5px;
+  height: 30px;
+  margin-left: 70px;
+  cursor: pointer;
+  text-align: center;
+  color:rgb(7, 117, 3);  
+  text-decoration-line: none;
+}
+
+
+
+/* ------------------------------------------------------responsive------------------------------------------- */
+
+#newPRSmall{
+  width: 100%;
+  height: 160px;
+  background-color: white;
+  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147)); 
+  margin-bottom: 30px;
+}
