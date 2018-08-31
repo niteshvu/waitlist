@@ -216,7 +216,7 @@ class Navbar extends Component {
        })
     const pullrequests = [...this.state.pullRequests];
     pullrequests[prIndex].name = event.name;
-    pullrequests[prIndex].name = event.status;
+    pullrequests[prIndex].status = event.status;
     pullrequests[prIndex].gitHub = event.gitHub;
 
     this.setState({
