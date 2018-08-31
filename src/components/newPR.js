@@ -30,7 +30,12 @@ class NewPR extends Component {
             userEmail: null,
             userPhotoURL:null
         },
-        statusList: [{
+        statusList: [
+        {
+            id:1,
+            name: ''
+        },
+        {
           id:1,
           name: 'Ready to Merge'
         },{
@@ -184,6 +189,51 @@ onInputHandlerGitHub = (event) => {
     this.props.editPullRequest(pullrequests);
   }
 
+  chooseColor = (status) => {
+    let QA_Pending = {
+        'color': '#a01823'
+    },
+    QA_Approved = {
+        'color': '#3a6ab7'
+    },
+    Must_for_release = {
+        'color': '#226338'
+    },
+    Ready_to_Merge = {
+        'color': '#666633'
+    }
+
+
+    if(status == 'QA Pending'){
+        return QA_Pending;
+    }
+    else if(status == 'QA Approved'){
+        return QA_Approved;
+    }
+    else if(status == 'Must for release'){
+        return Must_for_release;
+    }
+    else if(status == 'Ready to Merge'){
+        return Ready_to_Merge;
+    }
+  }
+
+  chooseIcon = (status) => {
+    
+    if(status == 'QA Pending'){
+        return 'glyphicon glyphicon-hourglass';
+    }
+    else if(status == 'QA Approved'){
+        return 'glyphicon glyphicon-thumbs-up';
+    }
+    else if(status == 'Must for release'){
+        return 'glyphicon glyphicon-flag';
+    }
+    else if(status == 'Ready to Merge'){
+        return 'glyphicon glyphicon-ok';
+    }
+  }
+
 
 
   render() {
@@ -230,7 +280,7 @@ onInputHandlerGitHub = (event) => {
                 </div>
                 <div className="col-sm-2 editOrOK">
                   {(this.props.pullrequests.clickedOk ?
-                      <p>{this.props.status}</p>
+                      <p style={this.chooseColor(this.props.status)}><span class={this.chooseIcon(this.props.status)}></span>&nbsp;&nbsp;{this.props.status}</p>
                   :<select onChange={(event) => this.onStatusHandler(event)} >
                   {this.state.statusList.map((e, key) => {
                        return <option
