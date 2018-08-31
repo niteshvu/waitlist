@@ -9,9 +9,9 @@ import {firebase,  auth, provider } from '../firebase.js';
 
 
 class Header extends Component {
-    
+
     constructor(props){
-      super(props); 
+      super(props);
 
       this.state = {
         show: false ,
@@ -23,29 +23,30 @@ class Header extends Component {
             isAdmin: false,
             requested: null,
             uid: null,
-            userDisplayName: null, 
+            userDisplayName: null,
             userEmail: null,
             userPhotoURL:null
         }
       }
-      this.login = this.login.bind(this); 
+      this.login = this.login.bind(this);
       this.logout = this.logout.bind(this);
-    
+
     }
+
     componentDidMount() {
         auth.onAuthStateChanged((user) => {
           if (user) {
             this.setState({ user });
-          } 
+          }
         });
 
 
     const itemsRef = firebase.database().ref('userData');
-    const itemsRef2 = firebase.database().ref('acceptedUsers'); 
+    const itemsRef2 = firebase.database().ref('acceptedUsers');
     let newState = [];
     itemsRef.on('value', (snapshot) => {
       let items = snapshot.val();
-      
+
       for (let item in items) {
         newState.push({
             uid: items[item].uid,
@@ -59,7 +60,7 @@ class Header extends Component {
       }
       this.setState({
         userData: newState,
-       
+
       });
 
       itemsRef2.on('value', (snapshot) => {
@@ -76,47 +77,48 @@ class Header extends Component {
             });
           }
           this.setState({
-    
+
             userData: newState,
             currentUser: {
                 isAdmin: false,
                 requested: null,
                 uid: null,
-                userDisplayName: null, 
+                userDisplayName: null,
                 userEmail: null,
                 userPhotoURL:null
             }
 
           });
         });
-        
+
       });
 
     }
 
     logout() {
+      let comp = this;
         auth.signOut()
         .then(() => {
-            this.setState({
+            comp.setState({
              user: null,
              currentUser: {
                 accessApproved: null,
                 isAdmin: false,
                 requested: null,
                 uid: null,
-                userDisplayName: null, 
+                userDisplayName: null,
                 userEmail: null,
                 userPhotoURL:null
             }
         });
         sessionStorage.clear();
         });
-        
-        
+
+
     }
 
     login() {
-        auth.signInWithPopup(provider) 
+        auth.signInWithPopup(provider)
           .then((result) => {
             const user = result.user;
             sessionStorage.setItem('user', user.uid);
@@ -124,7 +126,7 @@ class Header extends Component {
               user
             });
             const itemsRef = firebase.database().ref('userData');
-            const itemsRef2 = firebase.database().ref('acceptedUsers'); 
+            const itemsRef2 = firebase.database().ref('acceptedUsers');
             const userData = {
                 uid: user.uid,
                 userEmail: user.email,
@@ -157,13 +159,13 @@ class Header extends Component {
                             isAdmin: tempUserData[i].isAdmin,
                             requested: tempUserData[i].requested,
                             uid: tempUserData[i].uid,
-                            userDisplayName: tempUserData[i].userDisplayName, 
+                            userDisplayName: tempUserData[i].userDisplayName,
                             userEmail: tempUserData[i].userEmail,
                             userPhotoURL:tempUserData[i].userPhotoURL
                         }
                     })
                     sessionStorage.setItem('currentUserIsAdmin', this.state.currentUser.isAdmin);
-                    sessionStorage.setItem('currentHasAccess', this.state.currentUser.accessApproved);   
+                    sessionStorage.setItem('currentHasAccess', this.state.currentUser.accessApproved);
                 }
             }
           });
@@ -180,7 +182,7 @@ class Header extends Component {
                     keys = Object.keys(scores);
                 }
             }
-        
+
         const currentUserId = this.state.currentUser.uid;
 
         let newState = [];
@@ -200,10 +202,10 @@ class Header extends Component {
              {
                  keyIndex = i;
              }
-          }    
+          }
           var updates = {};
           updates['/requested'] = true ;
-          firebase.database().ref('userData').child(keys[keyIndex]).update(updates); 
+          firebase.database().ref('userData').child(keys[keyIndex]).update(updates);
           const currentUser = [...this.state.currentUser];
           currentUser.requested = true;
           currentUser.accessApproved = false;
@@ -211,22 +213,21 @@ class Header extends Component {
           currentUser.userDisplayName = this.state.currentUser.userDisplayName;
           this.setState(
               {
-                  currentUser: currentUser 
+                  currentUser: currentUser
               }
           )
-          
+
     }
-          
-  
+
+
     render() {
         const currentUserIsAdmin = JSON.parse(sessionStorage.getItem('currentUserIsAdmin'));
         let disableButtons = null;
-        console.log('innavrbar'+ this.state.currentUser.isAdmin)
-        if(this.state.currentUser.isAdmin === false)
+        if(!currentUserIsAdmin)
             disableButtons = {
                 display: "none"
             }
-        
+
       return (
         <div>
             <nav className="navbar navbar-fixed-top navbar-default" >
@@ -247,30 +248,29 @@ class Header extends Component {
 
                    {!this.state.currentUser.requested && this.state.currentUser.accessApproved === false ? <li><button className="btn btn-primary" onClick={this.requestAccess}>Request Access</button></li> :null}
                    {this.state.currentUser.requested && this.state.currentUser.accessApproved ===false ? <li><button className="btn btn-danger" >Request Pending..</button></li> :null}
-                    
-                    <li><Link to="/home"><strong >Home</strong></Link></li>
-                    {/* <li><a className="manageUser" onClick={this.showModal}><strong >Login</strong></a></li> */}
+
+                    <li><Link to="/home">Home</Link></li>
                     {this.state.currentUser.userDisplayName?<li className="manageUsername"><span className="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<strong >{this.state.currentUser.userDisplayName}</strong></li>:null}
                     <li className="manageUser">{this.state.user ?
-                        <strong><Link to="/home" onClick={this.logout}>Log Out</Link></strong>                
+                        <Link to="/home" onClick={this.logout}>Log Out</Link>
                         :
-                        <strong><a className="loginButton" onClick={this.login}>Log In</a></strong>              
+                        <a className="loginButton" onClick={this.login}>Log In</a>
                     }</li>
-                    
+
                     <li>
-                         <Link to="/addUsers"className ="dropdown-item manageUser" ><strong style={disableButtons}>Manage Users</strong></Link>  
+                      {this.state.user ?
+                         <Link to="/addUsers" className ="dropdown-item manageUser"><span style={disableButtons}>Manage Users</span></Link>
+                          :''}
                     </li>
-                    
+
                 </ul>
             </div>
-        
+
             </div>
-        </nav> 
+        </nav>
         </div>
       );
     }
   }
-  
-  export default Header;
 
-  
+  export default Header;

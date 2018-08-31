@@ -3,6 +3,19 @@ html, body{
   background-color: rgb(231, 231, 231);
   font-family: "Helvetica";
 }
+
+p{
+  font-weight: 100;
+}
+
+a{
+  font-weight: 100;
+}
+
+a:hover{
+  color: rgb(32, 127, 211);
+}
+
 .grey{
   color: grey;
 }
@@ -24,11 +37,10 @@ html, body{
   font-size: 10px;
 }
 .manageUser{
-  padding: 13px 5px 10px 5px;
+  /* padding: 13px 5px 10px 5px; */
 }
 .manageUser:hover{
   text-decoration: none;
-  font-weight: bold;
 }
 .manageUsername{
 
@@ -37,14 +49,15 @@ html, body{
 #addButton{
   position: fixed;
     bottom: 0px;
-    right: 0px; 
+    right: 0px;
+    border-color: transparent;
     border-radius: 50%;
     background-color: rgb(37, 132, 196);
     padding: 20px 22px 19px 22px;
     margin-bottom: 30px;
     margin-right: 30px;
     filter: drop-shadow(5px 10px 10px  rgb(148, 147, 147));
-    
+
 }
 .glyphicon.glyphicon-plus {
   color: white;
@@ -59,7 +72,7 @@ html, body{
   width: 100%;
   height: 60px;
   background-color: white;
-  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147)); 
+  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147));
   margin-bottom: 30px;
 }
 
@@ -87,7 +100,7 @@ html, body{
   margin-left: 38%;
   cursor: pointer;
 }
-.delete:hover{
+/* .delete:hover{
   padding: 17px;
   padding-top: 27px;
   text-align: center;
@@ -95,29 +108,31 @@ html, body{
   background-color: rgb(255, 0, 0);
   cursor: pointer;
   margin-left: 38%;
-  cursor: pointer;
 
+} */
+
+.actions{
+  padding: 0px !important;
+  position: inherit;
 }
 .edit{
-
   padding: 17px;
   padding-top: 27px;
   text-align: center;
   color: rgb(32, 127, 211);
-  margin-left: 96%;
+  margin-left: 91%;
   cursor: pointer;
 
 }
-.edit:hover{
+/* .edit:hover{
   padding: 17px;
   padding-top: 27px;
   text-align: center;
   color: white;
   background-color:  rgb(32, 127, 211);
-  cursor: pointer;
   margin-left: 96%;
   cursor: pointer;
-}
+} */
 
 .ok{
   padding: 17px;
@@ -126,19 +141,16 @@ html, body{
   color: rgb(18, 131, 27);
   margin-left: 96%;
   cursor: pointer;
-
-  cursor: pointer;
 }
-.ok:hover{
+/* .ok:hover{
   padding: 17px;
   padding-top: 27px;
   text-align: center;
   color: white;
   background-color: green;
-  cursor: pointer;
   margin-left: 96%;
   cursor: pointer;
-}
+} */
 .loginButton:hover{
   margin-top: 10px;
   text-decoration-line: none;
@@ -366,7 +378,7 @@ input:checked + .slider:before {
   border-radius: 50%;
   max-width: 100px;
   max-height: 100px;
-  margin-left: 33%; 
+  margin-left: 33%;
 }
 .pendingName{
   text-align: center;
@@ -435,7 +447,7 @@ input:checked + .slider:before {
   margin-left: 70px;
   cursor: pointer;
   text-align: center;
-  color:rgb(7, 117, 3);  
+  color:rgb(7, 117, 3);
   text-decoration-line: none;
 }
 
@@ -447,6 +459,6 @@ input:checked + .slider:before {
   width: 100%;
   height: 160px;
   background-color: white;
-  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147)); 
+  filter: drop-shadow(5px 5px 8px  rgb(148, 147, 147));
   margin-bottom: 30px;
 }

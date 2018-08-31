@@ -159,6 +159,28 @@ class AddUser extends Component {
         updates['/accessApproved'] = !user.accessApproved;
         firebase.database().ref('userData').child(keyToUpdate).remove();
     }
+
+
+    declineUser = (user) => {
+      const itemsRef2 = firebase.database().ref('userData');
+      itemsRef2.on('value', gotData);
+          var keys;
+          function gotData(data){
+              if(data.val())
+              {
+                  var scores = data.val();
+                  keys = Object.keys(scores);
+              }
+          }
+      let keyToUpdate = 0;
+      for(var i = 0; i < this.state.userData.length ; i++)
+      {
+              if (user.uid == this.state.userData[i].uid){
+                  keyToUpdate = keys[i];   
+              }
+      }
+      firebase.database().ref('userData').child(keyToUpdate).remove();
+    }
   
     render() {
       return (

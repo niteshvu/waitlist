@@ -28,13 +28,13 @@ class Navbar extends Component {
                 isAdmin: false,
                 requested: null,
                 uid: null,
-                userDisplayName: null, 
+                userDisplayName: null,
                 userEmail: null,
                 userPhotoURL:null
             }
         }
         this.deletePullRequest = this.deletePullRequest.bind(this);
-        }
+      }
 
     componentDidMount() {
 
@@ -45,11 +45,11 @@ class Navbar extends Component {
         function(user) {
             if (user) {
 
-                const itemsRef2 = firebase.database().ref('acceptedUsers'); 
+                const itemsRef2 = firebase.database().ref('acceptedUsers');
                 let newState = [];
                 itemsRef2.on('value', (snapshot) => {
                   let items = snapshot.val();
-                  
+
                   for (let item in items) {
                     newState.push({
                         uid: items[item].uid,
@@ -60,7 +60,7 @@ class Navbar extends Component {
                         accessApproved: items[item].accessApproved,
                         requested: items[item].requested
                     });
-                  }  
+                  }
                   });
                 this.setState({
                     userName: user.email ,
@@ -79,7 +79,7 @@ class Navbar extends Component {
                             isAdmin: tempUserData[i].isAdmin,
                             requested: tempUserData[i].requested,
                             uid: tempUserData[i].uid,
-                            userDisplayName: tempUserData[i].userDisplayName, 
+                            userDisplayName: tempUserData[i].userDisplayName,
                             userEmail: tempUserData[i].userEmail,
                             userPhotoURL:tempUserData[i].userPhotoURL
                         }
@@ -105,20 +105,16 @@ class Navbar extends Component {
               createdDate: items[item].createdDate,
               clickedOk: items[item].clickedOk,
               clickedEdit: items[item].clickedEdit,
-              gitHub: items[item].gitHub
+              gitHub: items[item].gitHub,
+              status: items[item].status
             });
           }
-          //console.log(userName);
 
-          
           this.setState({
             pullRequests: newState,
           });
         });
-        
-        
-        
-          
+
       }
 
       componentWillUnmount() {
@@ -128,12 +124,12 @@ class Navbar extends Component {
 
 
   addNewPR = () => {
-        var a = moment().format(); 
-        
+        var a = moment().format();
+
         if(this.state.pullRequests.length === 0)
         {
             let nextPr = {
-                id: 1, name: '', createdDate: a, sortIndex: 1, clickedOk: false, clickedEdit: false, gitHub: ''
+                id: 1, name: '', createdDate: a, sortIndex: 1, clickedOk: false, clickedEdit: false, gitHub: '', status:''
                 }
                 const prs = [...this.state.pullRequests]
                 prs.push(nextPr);
@@ -144,7 +140,7 @@ class Navbar extends Component {
         else{
             const maxID = this.state.pullRequests[this.state.pullRequests.length-1].id+1;
             let nextPR = {
-                id: maxID, name: '', createdDate: a, sortIndex: this.state.pullRequests.length + 1, clickedOk: false, clickedEdit: false, gitHub: ''
+                id: maxID, name: '', createdDate: a, sortIndex: this.state.pullRequests.length + 1, clickedOk: false, clickedEdit: false, gitHub: '',status:''
                 }
             const prs = [...this.state.pullRequests]
             prs.push(nextPR);
@@ -156,7 +152,7 @@ class Navbar extends Component {
         })
   }
 
-  deletePullRequest = (pr) => { 
+  deletePullRequest = (pr) => {
     if (!pr.clickedEdit){
     const prIndex = this.state.pullRequests.findIndex(p => {
         return p.id=== pr.id;
@@ -187,15 +183,15 @@ class Navbar extends Component {
         for(var i = 0; i <= pullrequests.length ; i++)
         {
                 if (i != prIndex){
-                    keyToUpdate.push(keys[i]);   
+                    keyToUpdate.push(keys[i]);
                 }
         }
         keyToUpdate.map((key, index) => {
             var updates = {};
             updates['/sortIndex'] = index + 1 ;
-            firebase.database().ref('pullrequests').child(key).update(updates);   
+            firebase.database().ref('pullrequests').child(key).update(updates);
         })
-        
+
         return firebase.database().ref('pullrequests').child(keys[prIndex]).remove();
     }
     }
@@ -220,6 +216,7 @@ class Navbar extends Component {
        })
     const pullrequests = [...this.state.pullRequests];
     pullrequests[prIndex].name = event.name;
+    pullrequests[prIndex].name = event.status;
     pullrequests[prIndex].gitHub = event.gitHub;
 
     this.setState({
@@ -238,37 +235,17 @@ class Navbar extends Component {
         pullRequests: pullrequests
     })
   }
-  
 
-  
+
+
   render() {
-    console.log(this.state.userName);
-    console.log(this.state.currentUser);
-
-    
-    // const prList = this.state.pullRequests.map((pr, index) => {
-    //     return <NewPR delete = {() => this.deletePullRequest(pr)}
-    //                 pullrequests = {pr}
-    //                 callBack = {this.bindPullRequests.bind(this)}
-    //                 name = {this.state.pullRequests[index].name}
-    //                 sortIndex = {this.state.pullRequests[index].sortIndex}
-    //                 editPullRequest = {this.callBackEdit.bind(this)}
-
-    //     />
-    // })
-
-    
+    const currentHasAccess = JSON.parse(sessionStorage.getItem('currentHasAccess'));
     return (
       <div>
-        <AddButton   addNewPR = {this.addNewPR} isDisabled = {!this.state.currentUser.accessApproved}/>
-        
-        
-        {/* <a id="addButton" className="btn btn-default" onClick={this.addNewPR}><span className="glyphicon glyphicon-plus"></span></a> */}
-        {/* <div id="test"></div> */}
+        <AddButton   addNewPR = {this.addNewPR} isDisabled = {!currentHasAccess}/>
+
+
         <div className="container prContainer">
-            {/* <div className="row col-sm-12">
-                <Filter/>
-            </div> */}
             <div className="row col-sm-12">
             {
                 this.state.pullRequests.map((pr, index) => (
@@ -277,6 +254,7 @@ class Navbar extends Component {
                         callBack = {this.bindPullRequests.bind(this)}
                         name = {this.state.pullRequests[index].name}
                         gitHub = {this.state.pullRequests[index].gitHub}
+                        status = {this.state.pullRequests[index].status}
                         sortIndex = {this.state.pullRequests[index].sortIndex}
                         editPullRequest = {this.callBackEdit.bind(this)}
                     />
@@ -289,7 +267,7 @@ class Navbar extends Component {
             (this.state.warning ? <Warning message="Sorry! Can't delete an unsaved instance"/> : null)
         }
       </div>
-      
+
     );
   }
 }
